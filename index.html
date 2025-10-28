@@ -1,314 +1,298 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Project Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .quiz-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5a4fcf;
+            margin-bottom: 30px;
+        }
+
+        #question-container {
+            margin-bottom: 20px;
+        }
+
+        #question-text {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .answer-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            margin: 10px 0;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .answer-btn:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        .answer-btn.correct {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .answer-btn.incorrect {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        #start-btn, #next-btn {
+            background-color: #5a4fcf;
+            color: white;
+        }
+
+        #start-btn:hover, #next-btn:hover {
+            background-color: #4a3fbf;
+        }
+
+        #restart-btn {
+            background-color: #FF9800;
+            color: white;
+        }
+
+        #restart-btn:hover {
+            background-color: #F57C00;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #result {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;English Project Quiz&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>min-height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.quiz-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: white;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 15px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 90%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-width: 600px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>h1 {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: #5a4fcf;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 30px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>#question-container {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>#question-text {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.4rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.answer-btn {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 12px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin: 10px 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f0f0f0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: left;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.answer-btn:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #e0e0e0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.answer-btn.correct {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #4CAF50;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.answer-btn.incorrect {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f44336;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.controls {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>button {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding: 10px 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.3s;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>#start-btn, #next-btn {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #5a4fcf;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>#start-btn:hover, #next-btn:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #4a3fbf;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>#restart-btn {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FF9800;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>#restart-btn:hover {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F57C00;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hide {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>#result {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-size: 1.5rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>margin-top: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="quiz-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h1&gt;English Grammar Quiz&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="start-screen"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p&gt;Test your knowledge of English grammar! There are 5 questions. Good luck!&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="start-btn"&gt;Start Quiz&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="quiz-screen" class="hide"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="question-container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="question-text"&gt;Question&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="answer-buttons"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Кнопки с ответами будут появляться здесь --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="controls"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="restart-btn" class="hide"&gt;Restart&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;button id="next-btn" class="hide"&gt;Next&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="result" class="hide"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Массив с вопросами и ответами</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const questions = [</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{</p>
-<p class="p1"><span class="Apple-converted-space">                </span>question: "Choose the correct option: She _____ to the store yesterday.",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>answers: [</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "go", correct: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "went", correct: true },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "goed", correct: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "going", correct: false }</p>
-<p class="p1"><span class="Apple-converted-space">                </span>]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{</p>
-<p class="p1"><span class="Apple-converted-space">                </span>question: "What is the past participle of 'write'?",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>answers: [</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "wrote", correct: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "written", correct: true },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "writed", correct: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "writing", correct: false }</p>
-<p class="p1"><span class="Apple-converted-space">                </span>]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{</p>
-<p class="p1"><span class="Apple-converted-space">                </span>question: "If I _____ you, I would study more.",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>answers: [</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "am", correct: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "was", correct: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "were", correct: true },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "be", correct: false }</p>
-<p class="p1"><span class="Apple-converted-space">                </span>]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{</p>
-<p class="p1"><span class="Apple-converted-space">                </span>question: "He's not here. He _____ to a business meeting.",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>answers: [</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "has been", correct: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "has gone", correct: true },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "has went", correct: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "went", correct: false }</p>
-<p class="p1"><span class="Apple-converted-space">                </span>]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>{</p>
-<p class="p1"><span class="Apple-converted-space">                </span>question: "By next year, I _____ English for five years.",</p>
-<p class="p1"><span class="Apple-converted-space">                </span>answers: [</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "will study", correct: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "will be studying", correct: false },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "will have been studying", correct: true },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>{ text: "study", correct: false }</p>
-<p class="p1"><span class="Apple-converted-space">                </span>]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Элементы DOM</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const startScreen = document.getElementById('start-screen');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const quizScreen = document.getElementById('quiz-screen');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const startButton = document.getElementById('start-btn');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const nextButton = document.getElementById('next-btn');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const restartButton = document.getElementById('restart-btn');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const questionText = document.getElementById('question-text');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const answerButtons = document.getElementById('answer-buttons');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const resultContainer = document.getElementById('result');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>let currentQuestionIndex = 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let score = 0;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Запуск квиза</p>
-<p class="p1"><span class="Apple-converted-space">        </span>startButton.addEventListener('click', startQuiz);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>nextButton.addEventListener('click', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>currentQuestionIndex++;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (currentQuestionIndex &lt; questions.length) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>showQuestion();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>showResult();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>restartButton.addEventListener('click', restartQuiz);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function startQuiz() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>startScreen.classList.add('hide');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>quizScreen.classList.remove('hide');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>currentQuestionIndex = 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>score = 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>showQuestion();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function showQuestion() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>resetState();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const currentQuestion = questions[currentQuestionIndex];</p>
-<p class="p1"><span class="Apple-converted-space">            </span>questionText.textContent = `Question ${currentQuestionIndex + 1}: ${currentQuestion.question}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>currentQuestion.answers.forEach(answer =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const button = document.createElement('button');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>button.textContent = answer.text;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>button.classList.add('answer-btn');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (answer.correct) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>button.dataset.correct = answer.correct;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', selectAnswer);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>answerButtons.appendChild(button);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>nextButton.classList.add('hide');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>restartButton.classList.add('hide');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function resetState() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>nextButton.classList.add('hide');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>while (answerButtons.firstChild) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>answerButtons.removeChild(answerButtons.firstChild);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function selectAnswer(e) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const selectedButton = e.target;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const correct = selectedButton.dataset.correct === 'true';</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Подсветка правильного и неправильного ответов</p>
-<p class="p1"><span class="Apple-converted-space">            </span>Array.from(answerButtons.children).forEach(button =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>setStatusClass(button, button.dataset.correct === 'true');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (correct) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>score++;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// Блокировка кнопок после выбора</p>
-<p class="p1"><span class="Apple-converted-space">            </span>Array.from(answerButtons.children).forEach(button =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>button.disabled = true;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>nextButton.classList.remove('hide');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (currentQuestionIndex === questions.length - 1) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>nextButton.textContent = 'Show Result';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function setStatusClass(element, correct) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (correct) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>element.classList.add('correct');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>element.classList.add('incorrect');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function showResult() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>quizScreen.classList.add('hide');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>resultContainer.classList.remove('hide');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>resultContainer.textContent = `Your score: ${score} out of ${questions.length}`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>restartButton.classList.remove('hide');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function restartQuiz() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>resultContainer.classList.add('hide');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>startScreen.classList.remove('hide');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>restartButton.classList.add('hide');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+    <div class="quiz-container">
+        <h1>English Grammar Quiz</h1>
+        <div id="start-screen">
+            <p>Test your knowledge of English grammar! There are 5 questions. Good luck!</p>
+            <button id="start-btn">Start Quiz</button>
+        </div>
+        <div id="quiz-screen" class="hide">
+            <div id="question-container">
+                <div id="question-text">Question</div>
+            </div>
+            <div id="answer-buttons">
+                <!-- Кнопки с ответами будут появляться здесь -->
+            </div>
+            <div class="controls">
+                <button id="restart-btn" class="hide">Restart</button>
+                <button id="next-btn" class="hide">Next</button>
+            </div>
+        </div>
+        <div id="result" class="hide"></div>
+    </div>
+
+    <script>
+        // Массив с вопросами и ответами
+        const questions = [
+            {
+                question: "Choose the correct option: She _____ to the store yesterday.",
+                answers: [
+                    { text: "go", correct: false },
+                    { text: "went", correct: true },
+                    { text: "goed", correct: false },
+                    { text: "writing", correct: false }
+                ]
+            },
+            {
+                question: "What is the past participle of 'write'?",
+                answers: [
+                    { text: "wrote", correct: false },
+                    { text: "written", correct: true },
+                    { text: "writed", correct: false },
+                    { text: "writing", correct: false }
+                ]
+            },
+            {
+                question: "If I _____ you, I would study more.",
+                answers: [
+                    { text: "am", correct: false },
+                    { text: "was", correct: false },
+                    { text: "were", correct: true },
+                    { text: "be", correct: false }
+                ]
+            },
+            {
+                question: "He's not here. He _____ to a business meeting.",
+                answers: [
+                    { text: "has been", correct: false },
+                    { text: "has gone", correct: true },
+                    { text: "has went", correct: false },
+                    { text: "went", correct: false }
+                ]
+            },
+            {
+                question: "By next year, I _____ English for five years.",
+                answers: [
+                    { text: "will study", correct: false },
+                    { text: "will be studying", correct: false },
+                    { text: "will have been studying", correct: true },
+                    { text: "study", correct: false }
+                ]
+            }
+        ];
+
+        // Элементы DOM
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const startButton = document.getElementById('start-btn');
+        const nextButton = document.getElementById('next-btn');
+        const restartButton = document.getElementById('restart-btn');
+        const questionText = document.getElementById('question-text');
+        const answerButtons = document.getElementById('answer-buttons');
+        const resultContainer = document.getElementById('result');
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        // Запуск квиза
+        startButton.addEventListener('click', startQuiz);
+        nextButton.addEventListener('click', () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        });
+        restartButton.addEventListener('click', restartQuiz);
+
+        function startQuiz() {
+            startScreen.classList.add('hide');
+            quizScreen.classList.remove('hide');
+            currentQuestionIndex = 0;
+            score = 0;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            resetState();
+            const currentQuestion = questions[currentQuestionIndex];
+            questionText.textContent = `Question ${currentQuestionIndex + 1}: ${currentQuestion.question}`;
+
+            currentQuestion.answers.forEach(answer => {
+                const button = document.createElement('button');
+                button.textContent = answer.text;
+                button.classList.add('answer-btn');
+                if (answer.correct) {
+                    button.dataset.correct = answer.correct;
+                }
+                button.addEventListener('click', selectAnswer);
+                answerButtons.appendChild(button);
+            });
+
+            nextButton.classList.add('hide');
+            restartButton.classList.add('hide');
+        }
+
+        function resetState() {
+            nextButton.classList.add('hide');
+            while (answerButtons.firstChild) {
+                answerButtons.removeChild(answerButtons.firstChild);
+            }
+        }
+
+        function selectAnswer(e) {
+            const selectedButton = e.target;
+            const correct = selectedButton.dataset.correct === 'true';
+            
+            // Подсветка правильного и неправильного ответов
+            Array.from(answerButtons.children).forEach(button => {
+                setStatusClass(button, button.dataset.correct === 'true');
+            });
+
+            if (correct) {
+                score++;
+            }
+
+            // Блокировка кнопок после выбора
+            Array.from(answerButtons.children).forEach(button => {
+                button.disabled = true;
+            });
+
+            nextButton.classList.remove('hide');
+            if (currentQuestionIndex === questions.length - 1) {
+                nextButton.textContent = 'Show Result';
+            }
+        }
+
+        function setStatusClass(element, correct) {
+            if (correct) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('incorrect');
+            }
+        }
+
+        function showResult() {
+            quizScreen.classList.add('hide');
+            resultContainer.classList.remove('hide');
+            resultContainer.textContent = `Your score: ${score} out of ${questions.length}`;
+            restartButton.classList.remove('hide');
+        }
+
+        function restartQuiz() {
+            resultContainer.classList.add('hide');
+            startScreen.classList.remove('hide');
+            restartButton.classList.add('hide');
+        }
+    </script>
 </body>
 </html>
