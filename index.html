@@ -139,160 +139,160 @@
         <div id="result" class="hide"></div>
     </div>
 
-    <script>
-        // Массив с вопросами и ответами
-        const questions = [
-            {
-                question: "Choose the correct option: She _____ to the store yesterday.",
-                answers: [
-                    { text: "go", correct: false },
-                    { text: "went", correct: true },
-                    { text: "goed", correct: false },
-                    { text: "writing", correct: false }
-                ]
-            },
-            {
-                question: "What is the past participle of 'write'?",
-                answers: [
-                    { text: "wrote", correct: false },
-                    { text: "written", correct: true },
-                    { text: "writed", correct: false },
-                    { text: "writing", correct: false }
-                ]
-            },
-            {
-                question: "If I _____ you, I would study more.",
-                answers: [
-                    { text: "am", correct: false },
-                    { text: "was", correct: false },
-                    { text: "were", correct: true },
-                    { text: "be", correct: false }
-                ]
-            },
-            {
-                question: "He's not here. He _____ to a business meeting.",
-                answers: [
-                    { text: "has been", correct: false },
-                    { text: "has gone", correct: true },
-                    { text: "has went", correct: false },
-                    { text: "went", correct: false }
-                ]
-            },
-            {
-                question: "By next year, I _____ English for five years.",
-                answers: [
-                    { text: "will study", correct: false },
-                    { text: "will be studying", correct: false },
-                    { text: "will have been studying", correct: true },
-                    { text: "study", correct: false }
-                ]
-            }
-        ];
+<script>
+    // Массив с вопросами и ответами
+    const questions = [
+        {
+            question: "Choose the correct option: She _____ to the store yesterday.",
+            answers: [
+                { text: "go", correct: false },
+                { text: "went", correct: true },
+                { text: "goed", correct: false },
+                { text: "writing", correct: false }
+            ]
+        },
+        {
+            question: "What is the past participle of 'write'?",
+            answers: [
+                { text: "wrote", correct: false },
+                { text: "written", correct: true },
+                { text: "writed", correct: false },
+                { text: "writing", correct: false }
+            ]
+        },
+        {
+            question: "If I _____ you, I would study more.",
+            answers: [
+                { text: "am", correct: false },
+                { text: "was", correct: false },
+                { text: "were", correct: true },
+                { text: "be", correct: false }
+            ]
+        },
+        {
+            question: "He's not here. He _____ to a business meeting.",
+            answers: [
+                { text: "has been", correct: false },
+                { text: "has gone", correct: true },
+                { text: "has went", correct: false },
+                { text: "went", correct: false }
+            ]
+        },
+        {
+            question: "By next year, I _____ English for five years.",
+            answers: [
+                { text: "will study", correct: false },
+                { text: "will be studying", correct: false },
+                { text: "will have been studying", correct: true },
+                { text: "study", correct: false }
+            ]
+        }
+    ];
 
-        // Элементы DOM
-        const startScreen = document.getElementById('start-screen');
-        const quizScreen = document.getElementById('quiz-screen');
-        const startButton = document.getElementById('start-btn');
-        const nextButton = document.getElementById('next-btn');
-        const restartButton = document.getElementById('restart-btn');
-        const questionText = document.getElementById('question-text');
-        const answerButtons = document.getElementById('answer-buttons');
-        const resultContainer = document.getElementById('result');
+    // Элементы DOM
+    const startScreen = document.getElementById('start-screen');
+    const quizScreen = document.getElementById('quiz-screen');
+    const startButton = document.getElementById('start-btn');
+    const nextButton = document.getElementById('next-btn');
+    const restartButton = document.getElementById('restart-btn');
+    const questionText = document.getElementById('question-text');
+    const answerButtons = document.getElementById('answer-buttons');
+    const resultContainer = document.getElementById('result');
 
-        let currentQuestionIndex = 0;
-        let score = 0;
+    let currentQuestionIndex = 0;
+    let score = 0;
 
-        // Запуск квиза
-        startButton.addEventListener('click', startQuiz);
-        nextButton.addEventListener('click', () => {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
-                showQuestion();
-            } else {
-                showResult();
-            }
-        });
-        restartButton.addEventListener('click', restartQuiz);
-
-        function startQuiz() {
-            startScreen.classList.add('hide');
-            quizScreen.classList.remove('hide');
-            currentQuestionIndex = 0;
-            score = 0;
+    // Запуск квиза
+    startButton.addEventListener('click', startQuiz);
+    nextButton.addEventListener('click', () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
             showQuestion();
+        } else {
+            showResult();
         }
+    });
+    restartButton.addEventListener('click', restartQuiz);
 
-        function showQuestion() {
-            resetState();
-            const currentQuestion = questions[currentQuestionIndex];
-            questionText.textContent = `Question ${currentQuestionIndex + 1}: ${currentQuestion.question}`;
+    function startQuiz() {
+        startScreen.classList.add('hide');
+        quizScreen.classList.remove('hide');
+        currentQuestionIndex = 0;
+        score = 0;
+        showQuestion();
+    }
 
-            currentQuestion.answers.forEach(answer => {
-                const button = document.createElement('button');
-                button.textContent = answer.text;
-                button.classList.add('answer-btn');
-                if (answer.correct) {
-                    button.dataset.correct = answer.correct;
-                }
-                button.addEventListener('click', selectAnswer);
-                answerButtons.appendChild(button);
-            });
+    function showQuestion() {
+        resetState();
+        const currentQuestion = questions[currentQuestionIndex];
+        questionText.textContent = `Question ${currentQuestionIndex + 1}: ${currentQuestion.question}`;
 
-            nextButton.classList.add('hide');
-            restartButton.classList.add('hide');
-        }
-
-        function resetState() {
-            nextButton.classList.add('hide');
-            while (answerButtons.firstChild) {
-                answerButtons.removeChild(answerButtons.firstChild);
+        currentQuestion.answers.forEach(answer => {
+            const button = document.createElement('button');
+            button.textContent = answer.text;
+            button.classList.add('answer-btn');
+            if (answer.correct) {
+                button.dataset.correct = answer.correct;
             }
+            button.addEventListener('click', selectAnswer);
+            answerButtons.appendChild(button);
+        });
+
+        nextButton.classList.add('hide');
+        restartButton.classList.add('hide');
+    }
+
+    function resetState() {
+        nextButton.classList.add('hide');
+        while (answerButtons.firstChild) {
+            answerButtons.removeChild(answerButtons.firstChild);
+        }
+    }
+
+    function selectAnswer(e) {
+        const selectedButton = e.target;
+        const correct = selectedButton.dataset.correct === 'true';
+        
+        // Подсветка правильного и неправильного ответов
+        Array.from(answerButtons.children).forEach(button => {
+            setStatusClass(button, button.dataset.correct === 'true');
+        });
+
+        if (correct) {
+            score++;
         }
 
-        function selectAnswer(e) {
-            const selectedButton = e.target;
-            const correct = selectedButton.dataset.correct === 'true';
-            
-            // Подсветка правильного и неправильного ответов
-            Array.from(answerButtons.children).forEach(button => {
-                setStatusClass(button, button.dataset.correct === 'true');
-            });
+        // Блокировка кнопок после выбора
+        Array.from(answerButtons.children).forEach(button => {
+            button.disabled = true;
+        });
 
-            if (correct) {
-                score++;
-            }
-
-            // Блокировка кнопок после выбора
-            Array.from(answerButtons.children).forEach(button => {
-                button.disabled = true;
-            });
-
-            nextButton.classList.remove('hide');
-            if (currentQuestionIndex === questions.length - 1) {
-                nextButton.textContent = 'Show Result';
-            }
+        nextButton.classList.remove('hide');
+        if (currentQuestionIndex === questions.length - 1) {
+            nextButton.textContent = 'Show Result';
         }
+    }
 
-        function setStatusClass(element, correct) {
-            if (correct) {
-                element.classList.add('correct');
-            } else {
-                element.classList.add('incorrect');
-            }
+    function setStatusClass(element, correct) {
+        if (correct) {
+            element.classList.add('correct');
+        } else {
+            element.classList.add('incorrect');
         }
+    }
 
-        function showResult() {
-            quizScreen.classList.add('hide');
-            resultContainer.classList.remove('hide');
-            resultContainer.textContent = `Your score: ${score} out of ${questions.length}`;
-            restartButton.classList.remove('hide');
-        }
+    function showResult() {
+        quizScreen.classList.add('hide');
+        resultContainer.classList.remove('hide');
+        resultContainer.textContent = `Your score: ${score} out of ${questions.length}`;
+        restartButton.classList.remove('hide');
+    }
 
-        function restartQuiz() {
-            resultContainer.classList.add('hide');
-            startScreen.classList.remove('hide');
-            restartButton.classList.add('hide');
-        }
-    </script>
+    function restartQuiz() {
+        resultContainer.classList.add('hide');
+        startScreen.classList.remove('hide');
+        restartButton.classList.add('hide');
+    }
+</script>
 </body>
 </html>
